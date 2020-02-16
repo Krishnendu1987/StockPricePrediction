@@ -32,6 +32,7 @@ def getStock(n):
         print("Stock: " + i)
         number += 1
 
+
 if __name__ == '__main__' :
     getStock(10)
 
