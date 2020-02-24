@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ec7bafe-3173-47b7-ae85-3dc40442e9c8" name="Default Changelist" comment="New Python Project">
+    <list default="true" id="4ec7bafe-3173-47b7-ae85-3dc40442e9c8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PricePrediction.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PricePredictionLSTM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StockPricePrediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/StockPricePrediction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/easy-install.pth" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/easy-install.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/setuptools-40.8.0-py3.6.egg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-3.6-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-3.6.exe" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/easy_install-3.6.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install-script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/easy_install.exe" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/easy_install.exe" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +50,49 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.PricePredictionLSTM">
+    <configuration name="PricePrediction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="StockPricePrediction" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PricePrediction.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PricePredictionLSTM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="StockPricePrediction" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PricePredictionLSTM.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="StockPricePrediction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="StockPricePrediction" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -65,6 +116,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.PricePredictionLSTM" />
+        <item itemvalue="Python.PricePrediction" />
         <item itemvalue="Python.StockPricePrediction" />
       </list>
     </recent_temporary>
@@ -106,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581824747095</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New Python Project">
+      <created>1581825060058</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1581825060058</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -114,10 +174,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="New Python Project" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="10" key="CommitChangelistDialog2" timestamp="1581824726531">
+    <state x="424" y="10" key="CommitChangelistDialog2" timestamp="1582520618264">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581824726531" />
+    <state x="424" y="10" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582520618264" />
     <state x="548" y="168" key="FileChooserDialogImpl" timestamp="1581824642032">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -126,34 +186,34 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="603" y="329" width="354" height="186" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1581824534786" />
-    <state width="1515" height="203" key="GridCell.Tab.0.bottom" timestamp="1581799383043">
+    <state width="1515" height="643" key="GridCell.Tab.0.bottom" timestamp="1582460657398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581799383043" />
-    <state width="1515" height="203" key="GridCell.Tab.0.center" timestamp="1581799383043">
+    <state width="1515" height="643" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582460657398" />
+    <state width="1515" height="643" key="GridCell.Tab.0.center" timestamp="1582460657398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581799383043" />
-    <state width="1515" height="203" key="GridCell.Tab.0.left" timestamp="1581799383043">
+    <state width="1515" height="643" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582460657398" />
+    <state width="1515" height="643" key="GridCell.Tab.0.left" timestamp="1582460657398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581799383043" />
-    <state width="1515" height="203" key="GridCell.Tab.0.right" timestamp="1581799383043">
+    <state width="1515" height="643" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582460657398" />
+    <state width="1515" height="643" key="GridCell.Tab.0.right" timestamp="1582460657398">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581799383043" />
-    <state x="277" y="56" key="SettingsEditor" timestamp="1581823266828">
+    <state width="1515" height="643" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582460657398" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1582520604170">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581823266828" />
-    <state x="361" y="135" key="Vcs.Push.Dialog.v2" timestamp="1581824973176">
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582520604170" />
+    <state x="361" y="135" key="Vcs.Push.Dialog.v2" timestamp="1581825075441">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="135" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581824973176" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1581822944195">
+    <state x="361" y="135" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1581825075441" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1582520371937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581822944195" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582520371937" />
     <state x="556" y="147" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1581823491731">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
