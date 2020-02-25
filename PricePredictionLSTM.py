@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM
 from sklearn.linear_model import LinearRegression
-
+from sklearn.preprocessing import MinMaxScaler
 
 
 def predictData(stock, days):
@@ -37,6 +37,7 @@ def predictData(stock, days):
                 df.index = df['Date']
                 data = df.sort_index(ascending=True, axis=0)
                 del df['Date']
+
                 forecast_time = int(days)
                 # Predicting the Stock price in the future
                 X = np.array(df.drop(['Prediction'], 1))
@@ -45,7 +46,11 @@ def predictData(stock, days):
                 # print(X)
                 # print("+++++++++ Y +++++++++")
                 # print(Y)
-                X = preprocessing.scale(X)
+                #X = preprocessing.scale(X)
+                # converting dataset into x_train and y_train
+                scaler = MinMaxScaler(feature_range=(0, 1))
+                X = scaler.fit_transform(X)
+                #Y = scaler.fit_transform(Y)
                 #X1 = preprocessing.scale(X1)
                 # print("+++++++++ X +++++++++")
                 # print(X)
@@ -62,6 +67,7 @@ def predictData(stock, days):
                 #Y_train = np.reshape(Y_train,(1,Y_train.shape[0]))
                 last_row = np.array([Y_train[-1]])
                 last_row = np.reshape(last_row, (1,last_row.shape[0]))
+                last_row = scaler.fit_transform(last_row)
                 #print(X_train)
                 #print(Y_train)
                 #print(last_row)
@@ -74,7 +80,7 @@ def predictData(stock, days):
                 model.compile(loss='mean_squared_error', optimizer='adam')
                 model.fit(X_train, last_row, epochs=1, batch_size=1, verbose=2)
                 close_price = model.predict(X_test)
-
+                close_price = scaler.inverse_transform(close_price)
                 print(close_price)
                 #print(model.summary())
 
