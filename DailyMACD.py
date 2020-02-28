@@ -4,7 +4,7 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-def testTrainSet():
+def dailyMACD():
     directory = os.path.join(os.path.abspath(os.getcwd()), "Exports/")
     for root, dirs, files in os.walk(directory):
         for file in files:
@@ -47,4 +47,4 @@ def testTrainSet():
 
 
 if __name__ == '__main__':
-    testTrainSet()
+    dailyMACD()
