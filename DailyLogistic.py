@@ -58,10 +58,16 @@ def dailyLogistic( days):
                 clf.fit(X_train, Y_train)
                 prediction = (clf.predict(X_prediction))
                 prediction1 = (clf.predict(X1_prediction))
-                data1_prediction['LogisticPrediction'] = data1_prediction['Close'] - prediction1
+                #for i in range(len(data1_prediction)):
+                #    rowindex = data1_prediction.index[i]
+                #    trend = prediction1[i] - data1_prediction.loc[rowindex, 'Close']
+                #    data1_prediction.loc[rowindex, 'LogisticPrediction'] = trend
+                data1_prediction['LogisticPrediction'] = prediction1 - data1_prediction['Close']
+
                 data1_prediction.insert(0,'Name',stockname)
                 data1_prediction.reset_index(drop=True,inplace=True)
                 del data1_prediction['Date']
+                print(prediction1)
                 #last_row1['Name'] = stockname
                 #print("Company: ",stockname)
                 #print(last_row1['Close'])
@@ -76,5 +82,5 @@ def dailyLogistic( days):
 
 
 if __name__ == '__main__':
-    df_logistic = dailyLogistic(5)
+    df_logistic = dailyLogistic(10)
     print(df_logistic)

@@ -39,6 +39,7 @@ def dailyMACD(a,b,c):
                 df_Test['exp2'] = df_Test1.Close.ewm(span=b, adjust=False).mean()
                 df_Test['macd'] = df_Test['exp1'] - df_Test['exp2']
                 df_Test['exp3'] = df_Test.macd.ewm(span=c, adjust=False).mean()
+                df_Test['histogram'] = df_Test['macd'] - df_Test['exp3']
                 #print(df_Test.head())
                 #plt.plot(df_Test.index, macd, label='MACD', color='#EBD2BE')
                 #plt.plot(df_Test.index, exp3, label='Signal Line', color='#E5A4CB')
@@ -46,7 +47,28 @@ def dailyMACD(a,b,c):
                 #plt.legend(loc='upper left')
                 #plt.show()
                 df_Train = df_Test.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+                for i in range(len(df_Train)-1):
+                    rowindex = df_Train.index[i]
+                    rowindex1 = df_Train.index[i+1]
+                    if df_Train.iloc[i+1]['macd'] > df_Train.iloc[i+1]['exp3']:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveSignal'] = "Y"
+                        # print("U")
+                    else:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveSignal'] = "N"
+                        # print("D")
+                    if df_Train.loc[rowindex, 'macd'] < 0 and df_Train.loc[rowindex1, 'macd'] > 0:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveZero'] = 'Y'
+                    elif df_Train.loc[rowindex, 'macd'] > 0 and df_Train.loc[rowindex1, 'macd'] < 0:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveZero'] = 'N'
+                    else:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveZero'] = 'NA'
 
+                    if df_Train.loc[rowindex, 'histogram'] < 0 and df_Train.loc[rowindex1, 'histogram'] > 0:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveHist'] = 'Y'
+                    elif df_Train.loc[rowindex, 'histogram'] > 0 and df_Train.loc[rowindex1, 'histogram'] < 0:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveHist'] = 'N'
+                    else:
+                        df_Train.loc[rowindex1, 'MacdCrossAboveHist'] = 'NA'
                 df_final = df_final.append(df_Train.tail(1))
         return df_final
 

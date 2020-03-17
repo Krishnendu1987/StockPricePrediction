@@ -42,12 +42,43 @@ def dailyStochastic(a,b,c):
                 df_Test['Slow%K'] = 100 * ((df_Test['Close'] - df_Test['L14']) / (df_Test['H14'] - df_Test['L14']))
 
                 # Create the "Fast %K" column in the DataFrame
-                df_Test['Fast%K'] = df_Test['Slow%K'].rolling(window=b).mean()
+                df_Test['Fast%D'] = df_Test['Slow%K'].rolling(window=b).mean()
 
                 # Create the "Fast %D" column in the DataFrame
-                df_Test['Fast%D'] = df_Test['Fast%K'].rolling(window=c).mean()
+                df_Test['Slow%D'] = df_Test['Fast%D'].rolling(window=c).mean()
                 df_Train = df_Test.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
                 #print(df_Test.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False))
+                for i in range(len(df_Train)):
+                    rowIndex = df_Train.index[i]
+                    if df_Train.iloc[i]['Slow%K'] > df_Train.iloc[i]['Fast%D']:
+                        df_Train.loc[rowIndex,'SlowStochCrossUP'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'SlowStochCrossUP'] = "N"
+                    if df_Train.iloc[i]['Fast%D'] > df_Train.iloc[i]['Slow%D']:
+                        df_Train.loc[rowIndex, 'FastStochCrossUP'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'FastStochCrossUP'] = "N"
+
+                    if df_Train.iloc[i]['Slow%K'] < 20 or df_Train.iloc[i]['Fast%D'] < 20:
+                        df_Train.loc[rowIndex,'SlowStochOverSold'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'SlowStochOverSold'] = "N"
+
+                    if df_Train.iloc[i]['Slow%K'] > 75 or df_Train.iloc[i]['Fast%D'] > 75:
+                        df_Train.loc[rowIndex,'SlowStochOverBought'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'SlowStochOverBought'] = "N"
+
+                    if df_Train.iloc[i]['Fast%D'] < 20 or df_Train.iloc[i]['Slow%D'] < 20:
+                        df_Train.loc[rowIndex, 'FastStochOverSold'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'FastStochOverSold'] = "N"
+
+                    if df_Train.iloc[i]['Fast%D'] > 75 or df_Train.iloc[i]['Slow%D'] > 75:
+                        df_Train.loc[rowIndex, 'FastStochOverBought'] = "Y"
+                    else:
+                        df_Train.loc[rowIndex, 'FastStochOverBought'] = "N"
+
 
 
                 df_final = df_final.append(df_Train.tail(1))
