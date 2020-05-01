@@ -42,6 +42,24 @@ for i in range(len(df)):
         prvelement = prvelement.strip()
     else :
         prvelement = 1
+
+    if i > 2 :
+        prv2element = df.iloc[i-2]['Elements']
+        prv2element = prv2element.strip()
+    else :
+        prv2element = 2
+
+    if i > 3 :
+        prv3element = df.iloc[i-3]['Elements']
+        prv3element = prv3element.strip()
+    else :
+        prv3element = 3
+
+    if i > 4 :
+        prv4element = df.iloc[i-4]['Elements']
+        prv4element = prv4element.strip()
+    else :
+        prv4element = 4
     spaceCount = df.iloc[i]['SpaceCounts'].astype(int)
     prvspaceCount = df.iloc[i]['PreviousRowCnt'].astype(int)
     nxtspaceCount = df.iloc[i]['NextRowCnt'].astype(int)
@@ -68,13 +86,22 @@ for i in range(len(df)):
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
             df.loc[rowindex, 'NodeLevel'] = NodeLevel
         else:
-            #then it is an Entity and increase the Node Level by 1 Insert the Parent to Queue and make Current Entity as Parent Entity and make this Entity as current Entity Attribute will be Null.
 
-            NodeLevel = NodeLevel + 1
-            ParentQueue.put(CurrentParent)
-            CurrentParent = CurrentEntity
-            CurrentEntity = element
-            CurrentAttribute = ''
+            if prvelement == '},':
+                NodeLevel = NodeLevel + 1
+                ParentQueue.put(CurrentParent)
+                CurrentParent = CurrentEntity
+                ###############################
+                CurrentEntity = element
+                CurrentAttribute = ''
+
+            else:
+                #then it is an Entity and increase the Node Level by 1 Insert the Parent to Queue and make Current Entity as Parent Entity and make this Entity as current Entity Attribute will be Null.
+                NodeLevel = NodeLevel + 1
+                ParentQueue.put(CurrentParent)
+                CurrentParent = CurrentEntity
+                CurrentEntity = element
+                CurrentAttribute = ''
             df.loc[rowindex, 'CurrentEntity'] = CurrentEntity
             df.loc[rowindex, 'CurrentAttribute'] = CurrentAttribute
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
@@ -175,12 +202,25 @@ for i in range(len(df)):
             df.loc[rowindex, 'NodeLevel'] = NodeLevel
         else:
 
-            if (prvelement == '},') :
+            if (prvelement == '],') and (prv2element == '}') and (prv3element == '}') and (prv4element == '}'):
                 # an Entity with Node level -1 and pop up the Parent Element from the Queue. [},]
                 NodeLevel = NodeLevel - 1
                 CurrentEntity = element
                 CurrentAttribute = ''
                 CurrentParent = ParentQueue.get()
+
+            elif ((prvelement == '},') and (prv2element == '}')) or ((prvelement == '],') and (prv2element == '}') and (prv3element == '}')):
+                # an Entity with same Node and same Parent Element from the Queue. [},]
+                NodeLevel = NodeLevel
+                CurrentEntity = element
+                CurrentAttribute = ''
+                CurrentParent = CurrentParent
+                #CurrentParent = ParentQueue.get()
+            #elif ((prvelement == '],') and (prv2element == '}')) :
+            #    NodeLevel = NodeLevel
+            #    CurrentEntity = element
+            #    CurrentAttribute = ''
+            #    CurrentParent = CurrentParent
             else:
                 # then it is an Entity with Node level + 1 and current Entity to be made as Parent Entity and Attribute is Null Push the Parent Entity to the Queue.
                 NodeLevel = NodeLevel + 1
@@ -212,8 +252,15 @@ for i in range(len(df)):
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
             df.loc[rowindex, 'NodeLevel'] = NodeLevel
         else:
-            # then it is an Attribute with same Node level and same Parent Entity and also the last attribute of the current Entity.
-            CurrentAttribute = element
+            if (prvelement == '},') and (prv2element == '}') and (prv3element == '}'):
+                # an Entity with Node level -1 and pop up the Parent Element from the Queue. [},]
+                NodeLevel = NodeLevel - 2
+                CurrentEntity = ParentQueue.get()
+                CurrentAttribute = element
+                CurrentParent = ParentQueue.get()
+            else:
+                # then it is an Attribute with same Node level and same Parent Entity and also the last attribute of the current Entity.
+                CurrentAttribute = element
             df.loc[rowindex, 'CurrentEntity'] = CurrentEntity
             df.loc[rowindex, 'CurrentAttribute'] = CurrentAttribute
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
@@ -221,6 +268,7 @@ for i in range(len(df)):
         print(spaceCount, prvspaceCount, nxtspaceCount,i,ParentQueue.qsize())
     # 5. If space count of current row is greater than next row and less than previous row :
     if ((spaceCount > nxtspaceCount) & (spaceCount < prvspaceCount)) :
+
 
         if ((element == '{') or (element == '}') or (element == ']') or (element == '[')):
             df.loc[rowindex, 'CurrentEntity'] = ''
@@ -237,6 +285,7 @@ for i in range(len(df)):
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
             df.loc[rowindex, 'NodeLevel'] = NodeLevel
         else:
+
             # then it is an Attribute with Node level -1 and Parent Entity to be made current Entity and previous Parent need to pop up from Queue.
             NodeLevel = NodeLevel - 1
             CurrentEntity = CurrentParent
@@ -329,8 +378,14 @@ for i in range(len(df)):
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
             df.loc[rowindex, 'NodeLevel'] = NodeLevel
         else:
-            # then it is an Attribute with same Node level and Same Current and Parent Entity.
-            CurrentAttribute = element
+            if (prvelement=='},') and (prv2element == '}'):
+                NodeLevel = NodeLevel - 1
+                CurrentEntity = CurrentParent
+                CurrentParent = ParentQueue.get()
+                CurrentAttribute = element
+            else:
+                #then it is an Attribute with same Node level and Same Current and Parent Entity.
+                CurrentAttribute = element
             df.loc[rowindex, 'CurrentEntity'] = CurrentEntity
             df.loc[rowindex, 'CurrentAttribute'] = CurrentAttribute
             df.loc[rowindex, 'CurrentParent'] = CurrentParent
@@ -344,6 +399,7 @@ for i in range(len(df)):
             df.loc[rowindex, 'CurrentAttribute'] = ''
             df.loc[rowindex, 'CurrentParent'] = ''
             df.loc[rowindex, 'NodeLevel'] = ''
+
         elif ((element == '},') or (element == '],')):
             NodeLevel = NodeLevel - 1
             CurrentEntity = CurrentParent
